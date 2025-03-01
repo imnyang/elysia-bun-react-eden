@@ -5,28 +5,9 @@ on:
 
 name: Bun Test
 jobs:
-  install-dependencies:
-    name: Install Dependencies
-    runs-on: ubuntu-latest
-    steps:
-      # Checkout the code
-      - uses: actions/checkout@v4
-      - uses: oven-sh/setup-bun@v2
-
-      # Install dependencies in frontend
-      - run: |
-          cd frontend
-          bun install  # Install dependencies for frontend
-
-      # Install dependencies in backend
-      - run: |
-          cd backend
-          bun install  # Install dependencies for backend
-
   run-dev:
     name: Run Dev Server
     runs-on: ubuntu-latest
-    needs: install-dependencies
     steps:
       # Checkout the code again
       - uses: actions/checkout@v4
@@ -34,6 +15,12 @@ jobs:
 
       # Run bun run dev in the background and stop after 3 seconds
       - run: |
+          cd frontend
+          bun install  # Install dependencies for frontend
+          cd ..
+          cd backend
+          bun install  # Install dependencies for backend
+          cd ..
           bun run dev &
           sleep 3
           kill $!
@@ -49,6 +36,12 @@ jobs:
 
       # Run bun run build
       - run: |
+          cd frontend
+          bun install  # Install dependencies for frontend
+          cd ..
+          cd backend
+          bun install  # Install dependencies for backend
+          cd ..
           bun run build
 
   run-start:
@@ -62,6 +55,12 @@ jobs:
 
       # Run bun run start in the background and stop after 3 seconds
       - run: |
+          cd frontend
+          bun install  # Install dependencies for frontend
+          cd ..
+          cd backend
+          bun install  # Install dependencies for backend
+          cd ..
           bun run start &
           sleep 3
           kill $!
