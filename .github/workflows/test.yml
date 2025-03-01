@@ -1,0 +1,31 @@
+on:
+  push:
+    branches: [main]
+
+name: Bun Test
+jobs:
+  my-job:
+    name: my-job
+    runs-on: ubuntu-latest
+    steps:
+      # Checkout the code
+      - uses: actions/checkout@v4
+      - uses: oven-sh/setup-bun@v2
+
+      # Run bun install
+      - run: bun install
+
+      # Run bun run dev and stop after 3 seconds
+      - run: |
+          bun run dev &
+          sleep 3
+          kill $!
+
+      # Run bun run build
+      - run: bun run build
+
+      # Run bun run start and stop after 3 seconds
+      - run: |
+          bun run start &
+          sleep 3
+          kill $!
