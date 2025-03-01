@@ -1,0 +1,13 @@
+{
+    "name": "monorepo",
+    "private": true,
+    "workspaces": [
+        "backend",
+        "frontend"
+    ],
+    "scripts": {
+        "dev": "bun --filter '*' dev",
+        "build": "bun --filter '*' build",
+        "start": "bun --filter '*' start"
+    }
+}
