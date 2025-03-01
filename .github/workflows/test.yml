@@ -34,7 +34,6 @@ jobs:
 
       # Run bun run dev in the background and stop after 3 seconds
       - run: |
-          cd frontend
           bun run dev &
           sleep 3
           kill $!
@@ -50,7 +49,6 @@ jobs:
 
       # Run bun run build
       - run: |
-          cd frontend
           bun run build
 
   run-start:
@@ -64,7 +62,6 @@ jobs:
 
       # Run bun run start in the background and stop after 3 seconds
       - run: |
-          cd frontend
           bun run start &
           sleep 3
           kill $!
