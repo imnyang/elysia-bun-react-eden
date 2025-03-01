@@ -16,13 +16,12 @@ jobs:
       # Install dependencies in frontend
       - run: |
           cd frontend
-          bun install
-          bun list  # Ensure dependencies are installed
+          bun install  # Install dependencies for frontend
 
       # Install dependencies in backend
       - run: |
           cd backend
-          bun install
+          bun install  # Install dependencies for backend
 
   run-dev:
     name: Run Dev Server
